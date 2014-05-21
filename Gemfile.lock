@@ -2,7 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     chipmunk (6.1.3.1)
+    coderay (1.1.0)
     gosu (0.7.50)
+    method_source (0.8.2)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    slop (3.5.0)
 
 PLATFORMS
   ruby
@@ -10,3 +17,4 @@ PLATFORMS
 DEPENDENCIES
   chipmunk
   gosu
+  pry
