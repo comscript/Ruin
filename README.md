@@ -48,8 +48,8 @@ Sets the sprite for this entity. It automatically looks in the img directory, so
 
 ## Map
 
-## create(width, height)
+### create(width, height)
 Create a new map of width by height blocks. Typically, you would call this via something along the lines of: ruin.addEntity(Map,1000,1000)
 
-## block(x, y)
+### block(x, y)
 Use this to retrieve a block at a particular location! Ruby arrays wrap around, so @myarray[-1][0] gives you the value at @myarray[max,0]. Also, if @myarray[10] is nil, then @myarray[10][0] throws an error. This is irritating. The block(x,y) method will return nil if negative numbers are passed or if the x index doesn't exist. That way you can be sure that block(x,y) returns a block when it exists and nil when it doesn't! Yay!
