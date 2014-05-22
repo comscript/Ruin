@@ -7,19 +7,18 @@ class Ruin < Gosu::Window
     super w, h, false
     @x = 0
     @y = 0
+    @w = w
+    @h = h
+    @show_cursor = true
     @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
     @entities = []
     @space = CP::Space.new
     @space.damping = 0.8
-
     @color = Gosu::Color.new(0xFF00FFFF)
-    @w = w
-    @h = h
     self.caption = "Ruin"
-    @man = Gosu::Image.new(self, "img/man.png", true)
   end
 
-  def addEntity(name,*params)
+  def addEntity(class_name,*params)
     ent = name.new(self)
     ent.create(*params)
     @entities << ent
@@ -39,16 +38,29 @@ class Ruin < Gosu::Window
     @font.draw(text,x,y,10,1,1,color)
   end
 
-  def _mouse_x
+  def ms_x
     self.mouse_x + @x
   end
 
-  def _mouse_y
+  def ms_y
     self.mouse_y + @y
   end
 
-  def needs_cursor?
-    true
+  def _ms_x
+    self.mouse_x
   end
+
+  def _ms_y
+    self.mouse_y
+  end
+
+  def needs_cursor?
+    @show_cursor
+  end
+
+  def show_cursor(show_cursor)
+    @show_cursor = show_cursor
+  end
+
 end
 
