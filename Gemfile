@@ -1,7 +1,6 @@
-# A sample Gemfile
 source "https://rubygems.org"
 
-gem "gosu"
-gem "chipmunk"
-gem "pry"
-gem "perlin"
+gem "gosu" #Media
+gem "chipmunk" #Physics
+gem "pry" #Debugging
+gem "perlin" #Noise for terrain generation
