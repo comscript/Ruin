@@ -31,8 +31,12 @@ class Ruin < Gosu::Window
 
   def draw
     draw_quad(0,0,@color, w,0,@color, 0,h,@color, w,h,@color, 0)
-    @font.draw("FPS: #{Gosu.fps}",10,10,10,1,1,0xffffff00)
+    print("FPS: #{Gosu.fps}",10,10)
     @entities.each {|e| e.draw}
+  end
+
+  def print(text,x,y,color=0xFFAA0000)
+    @font.draw(text,x,y,10,1,1,color)
   end
 
 end
