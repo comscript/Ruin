@@ -39,5 +39,16 @@ class Ruin < Gosu::Window
     @font.draw(text,x,y,10,1,1,color)
   end
 
+  def _mouse_x
+    self.mouse_x + @x
+  end
+
+  def _mouse_y
+    self.mouse_y + @y
+  end
+
+  def needs_cursor?
+    true
+  end
 end
 
