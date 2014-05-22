@@ -4,6 +4,7 @@ class Map < Entity
     self.sprite = "dirt.png"
     @width = width
     @height = height
+    self.y = 256
     gen = Perlin::Generator.new 123, 3.0, 3
     @blocks = gen.chunk(0,0,width,height,1).each do |row|
       row.map!{|b| (b > -0.3)?0:nil}
@@ -12,10 +13,10 @@ class Map < Entity
   end
 
   def update
-    ruin.x += 4 if ruin.button_down? Gosu::KbD
-    ruin.x -= 4 if ruin.button_down? Gosu::KbA
-    ruin.y += 4 if ruin.button_down? Gosu::KbS
-    ruin.y -= 4 if ruin.button_down? Gosu::KbW
+    ruin.x += 4 if ruin.button_down? Gosu::KbRight
+    ruin.x -= 4 if ruin.button_down? Gosu::KbLeft
+    ruin.y += 4 if ruin.button_down? Gosu::KbDown
+    ruin.y -= 4 if ruin.button_down? Gosu::KbUp
   end
 
   def draw
