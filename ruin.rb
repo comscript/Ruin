@@ -6,8 +6,12 @@ require "pry"
 
 class Ruin < Gosu::Window
 
+  attr_accessor :x, :y
+
   def initialize width, height
     super width, height, false
+    @x = 0
+    @y = 0
     @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
     @entities = []
     @space = CP::Space.new
@@ -39,8 +43,13 @@ class Ruin < Gosu::Window
 end
 
 class Entity
+  attr_accessor :x, :y
+  attr_reader :ruin
   def initialize(game)
-    @game = game
+    @sprite = nil
+    @ruin = game
+    @x = 0
+    @y = 0
   end
 
   def create
@@ -52,30 +61,51 @@ class Entity
   def draw
   end
 
+  def _x
+    @x - @ruin.x
+  end
+
+  def _y
+    @y - @ruin.y
+  end
+
+  def sprite=
+
+
 end
+
+class Sprite < Gosu::Image
+
+  def +
+
+end
+
+class Player < Entity
+
+  def create(x, y)
+    @sprite = Gosu::Image.new(@ruin, "img/man.png", true)
+  end
 
 class Map < Entity
 
   def create(width, height)
-    @tile = Gosu::Image.new(@game, "img/dirt.png", true)
-    @x = 0
-    @y = 0
+    @sprite = Gosu::Image.new(@ruin, "img/dirt.png", true)
     @width = width
     @height = height
     @tiles = [[1]*width]*height
   end
 
   def update
-    @x += 1 if @game.button_down? Gosu::KbD
-    @x -= 1 if @game.button_down? Gosu::KbA
-    @y += 1 if @game.button_down? Gosu::KbS
-    @y -= 1 if @game.button_down? Gosu::KbW
+    ruin.x += 1 if ruin.button_down? Gosu::KbD
+    ruin.x -= 1 if ruin.button_down? Gosu::KbA
+    ruin.y += 1 if ruin.button_down? Gosu::KbS
+    ruin.y -= 1 if ruin.button_down? Gosu::KbW
   end
 
   def draw
     @width.times do |w|
       @height.times do |h|
-        @tile.draw(@x + w*16, @y + h*16, 0) if @tiles[w,h]
+        @sprite.draw(_x + w*16, _y + h*16, 0) if @tiles[w,h]
       end
     end
   end
