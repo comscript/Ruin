@@ -4,8 +4,11 @@ class Map < Entity
     self.sprite = "dirt.png"
     @width = width
     @height = height
-    @tiles = [[1]*width]*height
-    @tile_size = 16
+    gen = Perlin::Generator.new 123, 3.0, 3
+    @blocks = gen.chunk(0,0,width,height,1).each do |row|
+      row.map!{|b| (b > -0.3)?0:nil}
+    end
+    @block_size = 16
   end
 
   def update
@@ -16,11 +19,21 @@ class Map < Entity
   end
 
   def draw
-    (ruin.w/@tile_size).times do |r|
-      (ruin.h/@tile_size).times do |c|
-        sprite.draw(r*@tile_size -_x % @tile_size, c*@tile_size - _y % @tile_size, 0) if @tiles[r,c]
+    (ruin.w/16+2).times do |i|
+      (ruin.h/16+2).times do |j|
+        r = i - 1
+        c = j - 1
+        if block(-(_x / 16)+r,-(_y / 16)+c)
+          sprite.draw(_x%16 + r*16, _y%16 + c*16, 0)
+        end
       end
     end
+  end
+
+  def block(x,y)
+    return nil if x < 0 or y < 0
+    return nil unless @blocks[x]
+    return @blocks[x][y]
   end
 
 end

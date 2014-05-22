@@ -1,6 +1,7 @@
 require "gosu"
 require "chipmunk"
 require "pry"
+require "perlin"
 require "./entity"
 require "./map"
 require "./ruin"
