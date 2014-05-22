@@ -1,9 +1,8 @@
-class Grenade < Entity
+class Grenade < CPEntity
 
   def create(x,y)
-    self.sprite= "grenade.png"
-    self.x = x
-    self.y = y
+    super(10, 150, x, y)
+    self.sprite="grenade.png" 
   end
 
   def update
