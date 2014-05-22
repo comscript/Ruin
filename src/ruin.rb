@@ -19,7 +19,7 @@ class Ruin < Gosu::Window
   end
 
   def addEntity(class_name,*params)
-    ent = name.new(self)
+    ent = class_name.new(self)
     ent.create(*params)
     @entities << ent
   end
