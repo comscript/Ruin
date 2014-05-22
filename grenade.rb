@@ -1,11 +1,9 @@
 class Grenade < Entity
-  
-  def initialize(ruin)
-    super(ruin)
-    self.sprite=("grenade.png")
-  end
 
-  def create
+  def create(x,y)
+    self.sprite= "grenade.png"
+    self.x = x
+    self.y = y
   end
 
   def update
