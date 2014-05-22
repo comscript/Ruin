@@ -1,4 +1,4 @@
-class Grenade < CPEntity
+class Grenade < Dynen
 
   def create(x,y)
     super(10, CP::moment_for_circle(10,0,8,CP::Vec2.new(0,0)), x, y)
