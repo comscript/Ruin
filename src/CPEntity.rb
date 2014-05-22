@@ -13,8 +13,4 @@ class CPEntity < Entity
   def _y
     @body.p.y - @ruin.y
   end
-
-  def render
-    @sprite.draw(_x, _y,0)
-  end
 end
