@@ -16,9 +16,9 @@ class Map < Entity
   end
 
   def draw
-    (ruin.w/@tile_size).times do |r|
-      (ruin.h/@tile_size).times do |c|
-        sprite.draw(r*@tile_size -_x % @tile_size, c*@tile_size - _y % @tile_size, 0) if @tiles[r,c]
+    (ruin.h/16).times do |v|
+      if @tiles[_x / 16][v - (_y / 16)]
+        ruin.print("#{_x / 16},#{(_y / 16) + v}",_x,_y+(v*16))
       end
     end
   end
