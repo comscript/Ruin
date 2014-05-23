@@ -1,7 +1,7 @@
 # Ruin API guide
 
 ## require.rb
-Thanks to our patented require_ALL_the_things(TM) technology, we may now require ALL the things. require.rb will require all ruby files in the src directory. It will then require all ruby files in the src subdirectories. It will then require all ruby files in the subdirectories of the src subdirectories, and so on. The idea is to put a file which has no dependencies into the src directory (such as entity.rb), then put its dependencies in a subfolder (such as entities).
+Thanks to our patented require_ALL_the_things(TM) technology, we may now require ALL the things. require.rb will require all ruby files in the src directory. It will then require all ruby files in the src subdirectories. It will then require all ruby files in the subdirectories of the src subdirectories, and so on. The idea is to put a file which has no dependencies into the src directory (such as entity.rb), then put those files which depend on it in a subfolder (such as entities).
 
 (P.S. If you're requiring external libraries such as gosu and chipmunk, you can just add those to the top of require.rb in the traditional fashion.)
 
@@ -34,6 +34,12 @@ DON'T USE THIS! I find it annoying to create instances, pass the game to them, t
 ### create()
 This is called when the entity is added to the game. Put all of your creation / setup code here.
 
+### x(), y(), w(), and h()
+The x, y location and width, height of the entity. They are all 0 by default. w,h are updated to match the size of the sprite (unless autowidth = false).
+
+### _draw() and _update()
+These are called automatically by Ruin. _update() automatically increments the animation and then calls update(). _draw() just calls draw(). The idea is that base code for entity can be put here, and subclasses of entity can still override update() and draw() without overriding existing functionality. If you plan to create a class that will be implemented by subclasses, consider overriding _update() or _draw(), (don't forget to call super()), that way your subclasses won't have to worry about overriding functionality. Otherwise, just ignore these and use draw() and update()
+
 ### update()
 Once this entity is added to an instance of Ruin, the update() method will be called every step of the game.
 
@@ -41,15 +47,21 @@ Once this entity is added to an instance of Ruin, the update() method will be ca
 Once this entity is added to an instance of Ruin, the draw() method will be called every time the screen needs to be drawn. Put your draw code here!
 
 ### render()
-This is a convenience function which will draw the sprite at _x, _y. Call this only in the draw() method!
+This is a convenience function which will draw the current sprite at _x, _y. Call this only in the draw() method!
 
-### sprite()
-Returns the sprite for this entity. If you do not want to use render(), sprite.draw is a good way to get more control over your sprite rendering.
+### animation()
+Returns the animation for this entity. (An animation is just an array of sprites. (Sprites are just images.))
 
-### sprite=(path, tileable=true)
-Sets the sprite for this entity. It automatically looks in the img directory, so you only need to pass the name of your file. In the future, you will be able to pass the name of a subfolder of img/ and an animation will automatically be created from the images within the specified folder. 
+### animation=(path, animation_speed=1, tileable=true, autowidth=true)
+Sets the animation for this entity. If path is a directory, the animation will be created from all images in the subdirectory (in alphanumeric order). If path is an image, that image will be used as the only frame for the animation. animation_speed will usually be 1 or a decimal (0.5 means one frame every two steps).
 
 (P.S. Ruby has syntactic sugar which lets you treat this function like an assignment. IE instead of writing sprite=("myimage.png"), you can write self.sprite = "myimage.png")
+
+### sprite=(path, animation_speed=1, tileble=true, autowidth=true)
+This is an alias for animation=, since static sprites are still stored as animations.
+
+### sprite()
+Returns the current sprite/animation frame for this entity. If you do not want to use render(), sprite.draw is a good way to get more control over your sprite rendering.
 
 ## Map
 
