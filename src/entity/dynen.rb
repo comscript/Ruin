@@ -17,4 +17,7 @@ class Dynen < Entity
   def mass
     @body.m
   end
+  def mass=(mass)
+    @body.m = mass
+  end
 end
