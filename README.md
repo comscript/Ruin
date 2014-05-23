@@ -1,7 +1,7 @@
 # Ruin API guide
 
 ## require.rb
-Thanks to our patented require_ALL_the_things(TM) technology, we may now require ALL the things. require.rb will require all ruby files in the src directory. It will then require all ruby files in the src subdirectories. It will then require all ruby files in the subdirectories of the src subdirectories, and so on. The idea is to put a file which has no dependencies into the src directory (such as entity.rb), then put its dependencies in a subfolder (such as entities).
+Thanks to our patented require_ALL_the_things(TM) technology, we may now require ALL the things. require.rb will require all ruby files in the src directory. It will then require all ruby files in the src subdirectories. It will then require all ruby files in the subdirectories of the src subdirectories, and so on. The idea is to put a file which has no dependencies into the src directory (such as entity.rb), then put those files which depend on it in a subfolder (such as entities).
 
 (P.S. If you're requiring external libraries such as gosu and chipmunk, you can just add those to the top of require.rb in the traditional fashion.)
 
