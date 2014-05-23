@@ -13,11 +13,4 @@ class Dynen < Entity
   def y
     @body.p.y
   end
-  def _x
-    x - @ruin.x
-  end
-
-  def _y
-    y - @ruin.y
-  end
 end
