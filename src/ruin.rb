@@ -25,13 +25,13 @@ class Ruin < Gosu::Window
   end
 
   def update
-    @entities.each {|e| e.update}
+    @entities.each {|e| e._update}
   end
 
   def draw
     draw_quad(0,0,@color, w,0,@color, 0,h,@color, w,h,@color, 0)
     print("FPS: #{Gosu.fps}",10,10)
-    @entities.each {|e| e.draw}
+    @entities.each {|e| e._draw}
   end
 
   def print(text,x,y,color=0xFFAA0000)
