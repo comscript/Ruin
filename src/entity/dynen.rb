@@ -1,7 +1,7 @@
 class Dynen < Entity
 
-  def create(m, i, x, y)
-    @body = CP::Body.new(m,i)
+  def create(x, y, mass, moment_of_i)
+    @body = CP::Body.new(mass, moment_of_i)
     @body.p = CP::Vec2.new(x,y)
     @ruin.addBody(@body)
   end
@@ -12,5 +12,9 @@ class Dynen < Entity
 
   def y
     @body.p.y
+  end
+
+  def mass
+    @body.m
   end
 end
