@@ -34,6 +34,9 @@ DON'T USE THIS! I find it annoying to create instances, pass the game to them, t
 ### create()
 This is called when the entity is added to the game. Put all of your creation / setup code here.
 
+### x(), y(), w(), and h()
+The x, y location and width, height of the entity. They are all 0 by default. w,h are updated to match the size of the sprite (unless autowidth = false).
+
 ### _draw() and _update()
 These are called automatically by Ruin. _update() automatically increments the animation and then calls update(). _draw() just calls draw(). The idea is that base code for entity can be put here, and subclasses of entity can still override update() and draw() without overriding existing functionality. If you plan to create a class that will be implemented by subclasses, consider overriding _update() or _draw(), (don't forget to call super()), that way your subclasses won't have to worry about overriding functionality. Otherwise, just ignore these and use draw() and update()
 
@@ -49,12 +52,12 @@ This is a convenience function which will draw the current sprite at _x, _y. Cal
 ### animation()
 Returns the animation for this entity. (An animation is just an array of sprites. (Sprites are just images.))
 
-### animation=(path, animation_speed=1, tileable=true)
+### animation=(path, animation_speed=1, tileable=true, autowidth=true)
 Sets the animation for this entity. If path is a directory, the animation will be created from all images in the subdirectory (in alphanumeric order). If path is an image, that image will be used as the only frame for the animation. animation_speed will usually be 1 or a decimal (0.5 means one frame every two steps).
 
 (P.S. Ruby has syntactic sugar which lets you treat this function like an assignment. IE instead of writing sprite=("myimage.png"), you can write self.sprite = "myimage.png")
 
-### sprite=(path, animation_speed=1, tileble=true)
+### sprite=(path, animation_speed=1, tileble=true, autowidth=true)
 This is an alias for animation=, since static sprites are still stored as animations.
 
 ### sprite()
