@@ -14,6 +14,7 @@ class Ruin < Gosu::Window
     @entities = []
     @space = CP::Space.new
     @space.damping = 0.8
+    @space.gravity = CP::Vec2.new(0,1000)
     @color = Gosu::Color.new(0xFF00FFFF)
     self.caption = "Ruin"
   end
@@ -25,8 +26,13 @@ class Ruin < Gosu::Window
     return ent
   end
 
+  def addBody(body)
+    @space.add_body(body)
+  end
+  
   def update
     @entities.each {|e| e._update}
+    @space.step(1.0/Gosu.fps)
   end
 
   def draw
