@@ -33,8 +33,8 @@ class Entity
       @animation << Gosu::Image.new(ruin, "img/#{path}", tileable)
     end
     if autosize
-      @w = @animation[0].width
-      @h = @animation[0].height
+      w = @animation[0].width
+      h = @animation[0].height
     end
   end
   alias_method :sprite=, :animation=
