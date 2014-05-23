@@ -20,10 +20,10 @@ class Entity
     y - ruin.y
   end
 
-  def animation=(path, tileable=true, animation_speed=1)
+  def animation=(path, animation_speed=1, tileable=true)
     self.animation_speed = animation_speed
     if File.directory?("img/#{path}")
-      images = Dir["img/#{path}/*"]
+      images = Dir["img/#{path}/*"].sort
       images.each do |image|
         @animation << Gosu::Image.new(ruin, image, tileable)
       end
