@@ -6,11 +6,18 @@ class Dynen < Entity
     @ruin.addBody(@body)
   end
 
+  def x
+    @body.p.x
+  end
+
+  def y
+    @body.p.y
+  end
   def _x
-    @body.p.x - @ruin.x
+    x - @ruin.x
   end
 
   def _y
-    @body.p.y - @ruin.y
+    y - @ruin.y
   end
 end
