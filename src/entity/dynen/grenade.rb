@@ -1,8 +1,7 @@
 class Grenade < Dynen
 
   def create(x,y)
-    self.sprite="grenade.png"
-    super(x,y,sprite.width,sprite.height,10)
+    super(x,y,10,"grenade.png")
   end
 
   def update

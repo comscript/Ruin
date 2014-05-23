@@ -1,7 +1,8 @@
 class Dynen < Entity
 
-  def create(x, y, width, height, mass)
-    @body = CP::Body.new(mass, CP::moment_for_box(mass,width,height))
+  def create(x, y, mass, sprite_path)
+    self.sprite=sprite_path
+    @body = CP::Body.new(mass, CP::moment_for_box(mass,@w,@h))
     @body.p = CP::Vec2.new(x,y)
     @ruin.addBody(@body)
   end
