@@ -1,7 +1,10 @@
 class Grenade < Dynen
 
-  def create(x,y)
-    super(x,y,10,"grenade.png")
+  def create(new_x, new_y)
+    self.x = new_x
+    self.y = new_y
+    mass = 10
+    self.sprite= "grenade.png"
   end
 
   def update
