@@ -19,6 +19,17 @@ class Dynen < Entity
   end
   def mass=(mass)
     @body.m = mass
-    @body.i = CP::moment_for_box(mass,@w,@h)
+    update_moment
+  end
+  def w=(w)
+    @w=w
+    update_moment
+  end
+  def h=(h)
+    @h=h
+    update_moment
+  end
+  def update_moment
+    @body.i = CP::moment_for_box(@body.m,@w,@h)
   end
 end
