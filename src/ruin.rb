@@ -23,6 +23,7 @@ class Ruin < Gosu::Window
     ent = class_name.new(self)
     ent.create(*params)
     @entities << ent
+    return ent
   end
 
   def addBody(body)
