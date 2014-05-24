@@ -4,7 +4,7 @@ class Player < Dynen
     self.x = new_x
     self.y = new_y
     mass = 100
-    self.sprite= "player.png"
+    self.sprite= "man/man.png"
     @body.v = CP::Vec2.new(0,0)
   end
 
