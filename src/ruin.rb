@@ -31,12 +31,7 @@ class Ruin < Gosu::Window
   end
   
   def update
-<<<<<<< HEAD
-    while Gosu.fps == 0
-    end
-=======
     return if Gosu.fps == 0
->>>>>>> master
     @entities.each {|e| e._update}
     @space.step(1.0/Gosu.fps)
   end
