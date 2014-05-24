@@ -9,8 +9,8 @@ class Player < Dynen
   end
 
   def update
-    move_left(50) if ruin.button_down? Gosu::KbA
-    move_right(50) if ruin.button_down? Gosu::KbD
+    move_left(200) if ruin.button_down? Gosu::KbA
+    move_right(200) if ruin.button_down? Gosu::KbD
     jump if ruin.button_down? Gosu::KbW
   end
 
@@ -23,7 +23,7 @@ class Player < Dynen
   end
 
   def jump
-    @body.v.y = 100
+    @body.v.y = -400
   end
 
   def draw
