@@ -31,13 +31,18 @@ class Ruin < Gosu::Window
   end
   
   def update
+<<<<<<< HEAD
     while Gosu.fps == 0
     end
+=======
+    return if Gosu.fps == 0
+>>>>>>> master
     @entities.each {|e| e._update}
     @space.step(1.0/Gosu.fps)
   end
 
   def draw
+    return if Gosu.fps == 0
     draw_quad(0,0,@color, w,0,@color, 0,h,@color, w,h,@color, 0)
     print("FPS: #{Gosu.fps}",10,10)
     @entities.each {|e| e._draw}
