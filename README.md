@@ -1,3 +1,9 @@
+#Gosu API
+http://www.libgosu.org/rdoc
+
+#Chipmunk API
+http://beoran.github.io/chipmunk/
+
 # Ruin API guide
 
 ## require.rb
