@@ -1,7 +1,7 @@
 class Map < Entity
 
   def create(width, height)
-    self.send(:animation=, "grass", 0, true, true)
+    setAnimation("grass", 0)
     @width = width
     @height = height
     self.y = 256
