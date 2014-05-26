@@ -22,7 +22,26 @@ class Entity
     y - ruin.y
   end
 
-  def animation=(path, animation_speed=1, tileable=true, autosize=true)
+  def setAnimation(path, animation_speed=1, tileable=true, autosize=true)
+    self.animation_speed = animation_speed
+    if File.directory?("img/#{path}")
+      images = Dir["img/#{path}/*"].sort
+      images.each do |image|
+        @animation << Gosu::Image.new(ruin, image, tileable)
+      end
+    else
+      @animation << Gosu::Image.new(ruin, "img/#{path}", tileable)
+    end
+    if autosize
+      w = @animation[0].width
+      h = @animation[0].height
+    end
+  end
+  def animation=(path)
+    animation_speed = 1
+    tileable = true
+    autosize = true
+
     self.animation_speed = animation_speed
     if File.directory?("img/#{path}")
       images = Dir["img/#{path}/*"].sort
