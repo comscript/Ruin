@@ -26,8 +26,9 @@ class Ruin < Gosu::Window
     return ent
   end
 
-  def addBody(body)
-    @space.add_body(body)
+  def simulate(shape)
+    @space.add_shape(shape)
+    @space.add_body(shape.body) unless shape.body.static?
   end
   
   def update

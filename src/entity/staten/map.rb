@@ -1,12 +1,13 @@
-class Map < Entity
+class Map < Staten
 
-  def create(width, height)
+  def create(w, h)
+    self.simulate(w, h)
     self.sprite = "dirt.png"
-    @width = width
-    @height = height
+    @w = w
+    @h = h
     self.y = 256
     gen = Perlin::Generator.new 123, 3.0, 3
-    @blocks = gen.chunk(0,0,width,height,1).each do |row|
+    @blocks = gen.chunk(0,0,w,h,1).each do |row|
       row.map!{|b| (b > -0.3)?0:nil}
     end
     @block_size = 16

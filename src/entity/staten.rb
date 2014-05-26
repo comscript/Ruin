@@ -1,9 +1,9 @@
-class Dynen < Entity
+class Staten < Entity
 
-  def simulate(mass, w, h)
-    moment_of_inertia = CP::moment_for_box(mass, w, h)
-    body = CP::Body.new(mass, moment_of_inertia)
+  def simulate(w, h)
+    body = CP::Body.new_static()
     @shape = CP::Shape::Poly.new(body, square(w, h), vector(0,0))
+    @shape.p = vector(x,y)
     @shape.e = 0.5
     @shape.u = 0.8
     @shape.collision_type = 1
@@ -24,10 +24,6 @@ class Dynen < Entity
 
   def y=(y)
     @shape.body.p.y = y
-  end
-
-  def mass
-    @shape.body.m
   end
 
 end

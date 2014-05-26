@@ -1,10 +1,10 @@
 class Grenade < Dynen
 
-  def create(new_x, new_y)
-    self.x = new_x
-    self.y = new_y
-    mass = 10
-    self.sprite= "grenade.png"
+  def create(x, y)
+    self.simulate(10, 16, 16)
+    self.sprite = "grenade.png"
+    self.x = x
+    self.y = y
   end
 
   def update

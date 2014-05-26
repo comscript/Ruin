@@ -1,6 +1,6 @@
 class Entity
 
-  attr_accessor :x, :y, :w, :h, :animation_speed, :animation_index
+  attr_accessor :x, :y, :animation_speed, :animation_index
   attr_reader :ruin
 
   def initialize(ruin)
@@ -10,8 +10,21 @@ class Entity
     @ruin = ruin
     @x = 0
     @y = 0
-    @w = 0
-    @h = 0
+    @w = 1
+    @h = 1
+  end
+
+  def vector(x,y)
+    CP::Vec2.new(x,y)
+  end
+
+  def square(w,h)
+    [
+      CP::Vec2.new(0,0),
+      CP::Vec2.new(0,h),
+      CP::Vec2.new(w,h),
+      CP::Vec2.new(w,0),
+    ]
   end
 
   def _x
@@ -22,7 +35,7 @@ class Entity
     y - ruin.y
   end
 
-  def animation=(path, animation_speed=1, tileable=true, autosize=true)
+  def animation=(path, animation_speed=1, tileable=true)
     self.animation_speed = animation_speed
     if File.directory?("img/#{path}")
       images = Dir["img/#{path}/*"].sort
@@ -31,10 +44,6 @@ class Entity
       end
     else
       @animation << Gosu::Image.new(ruin, "img/#{path}", tileable)
-    end
-    if autosize
-      w = @animation[0].width
-      h = @animation[0].height
     end
   end
   alias_method :sprite=, :animation=
