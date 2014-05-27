@@ -1,11 +1,13 @@
 class Map < Staten
 
-  def create(w, h)
-    self.simulate(w, h)
+  def create(x, y, w, h)
+    self.simulate(x, y, w, h)
+    self.x = x
+    self.y = y
+    binding.pry
     self.sprite = "dirt.png"
     @w = w
     @h = h
-    self.y = 256
     gen = Perlin::Generator.new 123, 3.0, 3
     @blocks = gen.chunk(0,0,w,h,1).each do |row|
       row.map!{|b| (b > -0.3)?0:nil}
