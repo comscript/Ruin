@@ -26,6 +26,13 @@ class Dynen < Entity
     @shape.body.p.y = y
   end
 
+  def render
+    sprite.draw_rot(_x,_y,0,@shape.body.angle * (180 / Math::PI))
+  end
+
+  def update
+  end
+
   def mass
     @shape.body.m
   end

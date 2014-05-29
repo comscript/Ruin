@@ -4,7 +4,6 @@ class Map < Staten
     self.simulate(x, y, w, h)
     self.x = x
     self.y = y
-    binding.pry
     self.sprite = "dirt.png"
     @w = w
     @h = h
