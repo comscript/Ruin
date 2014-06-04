@@ -1,7 +1,7 @@
 class Map < Entity
 
   def create(width, height)
-    self.sprite = "dirt.png"
+    setAnimationFromSheet("grass_tilemap.png",16,16,0)
     @width = width
     @height = height
     self.y = 256
@@ -24,7 +24,15 @@ class Map < Entity
       (ruin.h/16+2).times do |j|
         r = i - 1
         c = j - 1
-        if block(-(_x / 16)+r,-(_y / 16)+c)
+        current_x = -(_x / 16) + r
+        current_y = -(_y / 16) + c
+        if block(current_x,current_y)
+          adjacent = 0
+          adjacent |= 0x8 if block(current_x, current_y-1)
+          adjacent |= 0x4 if block(current_x + 1, current_y)
+          adjacent |= 0x2 if block(current_x, current_y + 1)
+          adjacent |= 0x1 if block(current_x - 1, current_y)
+          @animation_index = adjacent
           sprite.draw(_x%16 + r*16, _y%16 + c*16, 0)
         end
       end
