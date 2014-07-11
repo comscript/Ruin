@@ -23,7 +23,7 @@ Add an entity to the ruin instance. This function instantiates the entity, passe
 ### print(text, x, y, color=0xFFAA0000)
 Print text to the screen. Great for debugging!
 
-### _ms_x() and ms_y()
+### ms_x() and ms_y()
 Returns the absolute x/y position of the mouse in the game world. For example, if your character is at x = 1000 and your mouse is hovering over him, then ms_x will return 1000.
 
 ### _ms_x() and _ms_y()
